@@ -11,6 +11,9 @@ const PUBLIC = path.join(ROOT, 'public');
 
 app.use(express.static(PUBLIC));
 
+app.use('/rolls', require('./routes/rolls'))
+
+
 app.get('/', (req, res) => { res.sendFile(IndexHTML) });
 
 app.listen( '3000', () => { console.log('Listening on port 3000!'); })

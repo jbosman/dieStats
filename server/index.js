@@ -11,8 +11,8 @@ const PUBLIC = path.join(ROOT, 'public');
 
 app.use(express.static(PUBLIC));
 
-app.use('/rolls', require('./routes/rolls'))
-
+app.use('/rolls', 			require('./routes/rolls'))
+app.use('/distribution', 	require('./routes/distribution'))
 
 app.get('/', (req, res) => { res.sendFile(IndexHTML) });
 

@@ -1,7 +1,8 @@
 module.exports = class DiceRoll {
 	
-	constructor( gameId, rollerId, ...values ){
+	constructor( gameId, rollId, rollerId, ...values ){
 		this.gameId = gameId;
+		this.rollId = rollId;
 		this.rollerId = rollerId;
 
 		this.values = values;

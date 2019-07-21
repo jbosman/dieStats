@@ -7,7 +7,7 @@ import App from './app';
 require('./index.scss');
 
 ReactDOM.render(
-	<App />,
+	<App/>,
 	document.getElementById('app')
 );
 

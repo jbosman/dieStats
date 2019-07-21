@@ -22,9 +22,10 @@ function rollDice( numberOfDice ){
 
 let diceRolls = [];
 
-for( let i = 0; i < NUMBER_OF_TURNS; i++ ){
-	for( let i = 1; i <= NUMBER_OF_ROLLERS; i++ ){
-		diceRolls.push( new DiceRoll( GAME_ID, i, ...rollDice(2) ) )
+for( let turn = 0; turn < NUMBER_OF_TURNS; turn++ ){
+	for( let rollerId = 1; rollerId <= NUMBER_OF_ROLLERS; rollerId++ ){
+		const rollId = ( turn * NUMBER_OF_ROLLERS ) + rollerId;
+		diceRolls.push( new DiceRoll( GAME_ID, rollId, rollerId, ...rollDice(2) ) )
 	}
 }
 

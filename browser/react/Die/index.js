@@ -1,6 +1,6 @@
 import React from 'react';
 
-const DIE_CONTAINER_SIZE = 100;
+const DIE_CONTAINER_SIZE = 75;
 
 const DIE_SIZE = DIE_CONTAINER_SIZE * 0.8;
 

@@ -1,0 +1,19 @@
+.select-player-container {
+	padding: 5px;
+	border: 2px solid white;
+	border-radius: 10px;
+
+	.label {
+		position: absolute;
+		top: -3px;
+		display: inline;
+		background: #3F51B5;
+		padding: 5px;
+		border-radius: 15px;
+		color: #FFF;
+	}
+
+	.select-player {
+		margin: 5px 20px;
+	}
+}

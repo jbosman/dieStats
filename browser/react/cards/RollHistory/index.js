@@ -1,34 +1,37 @@
 import React, { Component } from 'react';
 
 import axios from 'axios';
-import Typography 	from '@material-ui/core/Typography';
 
 import Card from '../../common/Card';
 
-import ScrollingXContainer from '../../common/ScrollingXContainer';
+import { 
+	ScrollingXContainer,
+	ScrollingYContainer 
+} from '../../common/ScrollingContainers';
+
 
 import Roll from '../../Roll';
 
-export default function RollHistory({ history = [], historyLabel = 'All Rolls' }){
+export default function RollHistory({ history = [], selectedRollerId }){
 
 	if( history.length === 0 ) return <div>No History</div>;
 
+	const title = selectedRollerId == -1 ? 'Roll History' : `Roll History - Player ${selectedRollerId}`;
+
 	return (
-		<Card title='Roll History'>
-			<Typography>{ historyLabel } </Typography>
-			<ScrollingXContainer >
+		<Card title={ title }>
+			<ScrollingYContainer >
 				{
-					history.map( ({ rollId, rollerId, values }) => (
-							<Roll 
+					history.map( ({ rollId, rollerId, values }) => { 
+						return (<Roll 
 								key={rollId} 
 								values={ values }
 								rollId={ rollId }
-								rollerId={ rollerId } 
-							/>
-						)
-					)
+								rollerId={ rollerId == selectedRollerId ? undefined : rollerId } 
+						/>)
+					})
 				}
-			</ScrollingXContainer>
+			</ScrollingYContainer>
 		</Card>
 	);
 	

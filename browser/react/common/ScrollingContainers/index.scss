@@ -1,0 +1,38 @@
+
+.scroller-container {
+  margin:     10px;
+}
+
+.scroller {
+  // This adds momentum to the scroll ( For flick scroll it will )
+  -webkit-overflow-scrolling: touch;
+  // This removes the scroll bar
+  &::-webkit-scrollbar { display: none; }
+
+  white-space: nowrap;
+  
+}
+
+.scroll-x {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    height: 175px;
+    max-width: 90vw;
+
+    .child { 
+      display: inline-block; 
+      padding: 10px;
+    }
+}
+
+.scroll-y {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width:  200px;
+    height: 70vh;
+
+    .child { 
+      display: block; 
+      padding: 10px;
+    }
+}

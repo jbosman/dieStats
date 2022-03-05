@@ -58,7 +58,7 @@ export default function DistributionChart({ history = [] }){
          <YAxis 
            label={{ value: 'Counts', angle: -90, position: 'insideLeft' }} 
          />
-         <Bar dataKey="rollTotalCount"  fill="blue" />
+         <Bar dataKey="rollTotalCount"  fill="#3F51B5" />
         </BarChart>
       </div>
     </Card>

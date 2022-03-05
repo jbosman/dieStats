@@ -4,10 +4,16 @@ import axios from 'axios';
 
 require('./index.scss');
 
+import AppBar 		from '@material-ui/core/AppBar';
+import InputLabel 	from '@material-ui/core/InputLabel';
+import Toolbar 		from '@material-ui/core/Toolbar';
+import Container 	from '@material-ui/core/Container'
+import Typography 	from '@material-ui/core/Typography';
+
 import Card from '../common/Card';
 
+import FilterByPlayer 	from '../FilterByPlayer';
 import DistributionGraph from '../cards/DistributionGraph';
-import RollFilter 		 from '../cards/RollFilter';
 import RollHistory       from '../cards/RollHistory';
 
 export default class App extends Component {
@@ -17,7 +23,7 @@ export default class App extends Component {
 
 		this.state = {
 			history: [],
-			filterOnPlayerId: -1 // Sentinal filter value for all players selected
+			selectedPlayerId: -1 // Sentinal filter value for all players selected
 		}
 
 		this.historyFilter = this.historyFilter.bind( this );
@@ -36,31 +42,43 @@ export default class App extends Component {
 
 	historyFilter({ rollerId }){
 
-		const { filterOnPlayerId } = this.state;
+		const { selectedPlayerId } = this.state;
 
 		// If no single player is selected allow all the history through
-		if( filterOnPlayerId == -1 ) return true;
+		if( selectedPlayerId == -1 ) return true;
 
 		// If a specific player has been selected, filter that players history through
-		return rollerId == filterOnPlayerId;
+		return rollerId == selectedPlayerId;
 	}
 
 	render(){
 
-		const { history, filterOnPlayerId } = this.state;
+		const { history, selectedPlayerId } = this.state;
 
 		const displayHistory = history.filter( this.historyFilter );
 
 		return ( 
 	      <div className='app-container' >
-	      	<Card title='Roll Tracker'>
-		       	<DistributionGraph 	history={ displayHistory } 	/>
-		       	<RollFilter         
-		       		history={ history }	
-		       		updateRollFilter={ filterOnPlayerId => { this.setState({ filterOnPlayerId }) }}		
-		       	/>
-		        <RollHistory history={ displayHistory }	/>
-		    </Card>            
+	      	<AppBar position="fixed">
+	      		<Toolbar>
+		      		<Typography variant="h6" className='app-bar-title'>Roll Tracker</Typography>
+			      	<FilterByPlayer         
+			       		history={ history }	
+			       		updateRollFilter={ selectedPlayerId => { this.setState({ selectedPlayerId }) }}		
+			       	/>
+		       	</Toolbar>
+	      	</AppBar>
+	      	<div className='app-content grid'>
+	      		<div className='grid-left'>
+	       			<DistributionGraph 	history={ displayHistory } 	/>
+	        	</div>
+	        	<div className='grid-right'>	
+		        	<RollHistory 
+		        		history={ displayHistory }
+		        		selectedRollerId = { this.state.selectedPlayerId }
+		        	/>
+	        	</div>
+		    </div>   
 	      </div>
 	    );
 	}
